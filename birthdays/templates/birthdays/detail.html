@@ -1,0 +1,77 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <title>{{ person.name }}</title>
+
+  <meta name="description" content="Birthdays App">
+  <meta name="author" content="Lorenzo Sani">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="shortcut icon" href="{% static 'birthdays/favicon.ico' %}" type="image/x-icon">
+
+  <link rel="stylesheet" type="text/css" href="{% static 'birthdays/style.css' %}">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="{% static 'birthdays/script.js' %}"></script>
+</head>
+
+<body>
+  <div class="container main-content">
+    <div class="buttons">
+      <button onclick="goBack()" type="button" class="btn btn-link">
+        < Go back</button> <span>/</span><button id="add-present" type="button" class="btn btn-link">Add a
+            present</button><span>/</span><button id="delete-person" type="button" class="btn btn-link">Delete person</button> </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <img class="detail-pic" src="{{ person.picture }}" alt="{{ person.name }}" />
+      </div>
+      <div class="col-sm-8 col-xs-12">
+        <div class="container detail-info">
+          <p class="d-none" id="person-id">{{ person.id }}</p>
+          <h1 id="person-name">{{ person.name }}</h1>
+          <p>{{ person.fun_fact }}</p>
+          <br />
+          <h3>Birth day:</h3>
+          <p>{{ person.birth_date }}</p>
+          {% if present %}
+          <h3>Present:</h3>
+          <p>{{ present.what }}, £{{ present.price }}</p>
+          {% else %}
+          <h3>Present:</h3>
+          <p id="present-text">No present bought yet!</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="container px-0" id="present-container">
+      <div class="card add-card mt-5">
+        <form id="presentForm">
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="present-w">What present did you buy them?</label>
+                <input type="text" class="form-control" id="present-w" placeholder="A cheeky toy">
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="present-p">Price (e.g. 20.00)</label>
+                <input type="number" class="form-control" id="present-p" min="0" max="100" step="1"
+                  data-bind="value:present-price" placeholder="0.00" />
+              </div>
+            </div>
+          </div>
+          <input type="button" class="btn btn-warning d-inline" value="Add" id="present-submit"/>&nbsp;
+          <input type="button" class="btn btn-light d-inline" value="Cancel" id="present-cancel"/>
+        </form>
+      </div>
+    </div>
+</body>
+
+</html>

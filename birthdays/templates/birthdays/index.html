@@ -1,0 +1,73 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <title>Birthdays App</title>
+
+  <meta name="description" content="Birthdays App">
+  <meta name="author" content="Lorenzo Sani">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="shortcut icon" href="{% static 'birthdays/favicon.ico' %}" type="image/x-icon">
+
+  <link rel="stylesheet" type="text/css" href="{% static 'birthdays/style.css' %}">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="{% static 'birthdays/script.js' %}"></script>
+</head>
+
+<body>
+  <div class="container main-content">
+    <div class="container title">
+      <h1 class="display-4">Hey!</h1>
+      <h3 id="subAll">These people have their birthday today, {{ today_date }}:&nbsp;&nbsp;<img id="party-icon" alt="party-icon"
+          src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/whatsapp/116/party-popper_1f389.png" />
+      </h3>
+      <h3 id="subToday">These are all the people in your database:&nbsp;&nbsp;<img id="party-icon" alt="smile-icon"
+        src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/whatsapp/116/smiling-face-with-sunglasses_1f60e.png" />
+    </h3>
+    </div>
+    <br />
+    <div class="container">
+      <div class="card birthday-list" id="today-list">
+
+        {% if birthdays_today %}
+        {% for birthday in birthdays_today %}
+        <a href="birthdays/{{ birthday.id }}/">
+          <div class="row person-row">
+            <div class="col-1 pic-col">
+              <img class="person-pic" alt="person-picture" src="{{ birthday.picture }}" />
+            </div>
+            <div class="col-10 col-10">
+              <p class="person-name">{{ birthday.name }}</p>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+        {% else %}
+        <div class="row person-row">
+          <h4 id="no-data">No birthdays today :(</h4>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    <br />
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 buttons">
+          <button id="seeAll" type="button" class="btn btn-link">See All People</button>
+          <button id="seeToday" type="button" class="btn btn-link">Go Back</button>
+          <span>/</span>
+          <button type="button" class="btn btn-link"><a id="addNew" href="/new">Add New Person</a></button></div>
+      </div>
+    </div>
+  </div>
+  </div>
+</body>
+
+</html>

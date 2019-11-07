@@ -1,0 +1,81 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <title>Add a new person</title>
+
+  <meta name="description" content="Birthdays App">
+  <meta name="author" content="Lorenzo Sani">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="shortcut icon" href="{% static 'birthdays/favicon.ico' %}" type="image/x-icon">
+
+  <link rel="stylesheet" type="text/css" href="{% static 'birthdays/style.css' %}">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="{% static 'birthdays/script.js' %}"></script>
+</head>
+
+<body>
+  <div class="container main-content">
+    <div class="buttons">
+      <button onclick="goBack()" type="button" class="btn btn-link">
+        < Go back</button> </div> <br />
+        <br />
+        <h1 class="display-4">Let's add a new birthday!</h1>
+        <p>Fill the form below to add a new person to the database.</p>
+        <br />
+        <div class="card add-card">
+          <form id="addForm">
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" class="form-control" id="name" placeholder="John Lewis">
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label for="birthday">Birth day</label>
+                  <input type="text" class="form-control" id="birthday" placeholder="YYYY-MM-DD">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="picture">Picture URL</label>
+              <input type="text" class="form-control" id="picture" placeholder="http://mypicture.com">
+            </div>
+            <div class="form-group">
+              <label for="fun_fact">Fun fact</label>
+              <input type="text" class="form-control" id="fun_fact" placeholder="Something cool">
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="present-what">What present did you buy them?</label>
+                  <input type="text" class="form-control" id="present-what" placeholder="A cheeky toy">
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label for="present-price">Price (e.g. 20.00)</label>
+                  <input type="number" class="form-control" id="present-price" min="0" max="100" step="1"
+                    data-bind="value:present-price" placeholder="0.00" />
+                </div>
+              </div>
+            </div>
+            <br />
+            <input type="button" class="btn btn-warning" value="Submit" id="submit"/>
+          </form>
+        </div>
+    </div>
+
+  </div>
+</body>
+
+</html>
